@@ -1,63 +1,49 @@
 package UDP;
 
-import javax.xml.crypto.Data;
-import java.io.*;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
 
 public class Message implements Externalizable {
     //message counter
     public static int last;
-
     public int getId() {
         return id;
     }
-
     public Command getCommand() {
         return command;
     }
-
     public String getMessage() {
         return message;
     }
-
     public Date getDate() {
         return date;
     }
-
     public InetAddress getAddress() {
         return address;
     }
-
-
-
     public void setId(int id) {
         this.id = id;
     }
-
     public void setCommand(Command command) {
         this.command = command;
     }
-
     public void setMessage(String message) {
         this.message = message;
     }
-
     public void setDate(Date date) {
         this.date = date;
     }
-
     public void setAddress(InetAddress address) {
         this.address = address;
     }
-
     public void setPort(int port) {
         this.port = port;
     }
-
     //this massage id
     private int id;
     private Command command;
@@ -68,9 +54,6 @@ public class Message implements Externalizable {
     private InetAddress address;
     //sender port
     private transient int port;
-
-
-
     public Message(int id, Command command, String message, Date date, InetAddress address, int port){
         this.id = id;
         this.command = command;
@@ -111,17 +94,14 @@ public class Message implements Externalizable {
         return address.getHostAddress() + ":" + port + ":" + id + "-" + message + "-" + dateToString();
     }
 
-
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-
         out.writeInt(id);
         out.writeObject(command);
         out.writeObject(message);
         out.writeObject(date);
         out.writeObject(address);
         out.writeInt(port);
-
     }
 
     @Override

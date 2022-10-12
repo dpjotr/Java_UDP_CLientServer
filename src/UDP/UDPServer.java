@@ -6,8 +6,6 @@ import java.net.SocketException;
 import java.util.ArrayList;
 
 public class UDPServer implements AutoCloseable{
-
-
     public static final int SERVER_PORT = 9999;
     public static final int BUFFER_SIZE = 2048;
     private ArrayList<Message> list;
@@ -29,7 +27,6 @@ public class UDPServer implements AutoCloseable{
             catch(Exception e){
             System.err.println("Error-" + e.getMessage());
             }
-
     }
 
     private void run()  {
@@ -37,7 +34,6 @@ public class UDPServer implements AutoCloseable{
         while(isWorking){
             receiveMessage();
             if(list.size()>500) isWorking = false;
-
         }
         System.out.println("Server closed");
     }
@@ -49,7 +45,6 @@ public class UDPServer implements AutoCloseable{
             sb.append(m.toString()+"\n");
         }
         System.out.println(new String(sb));
-
     }
 
     private void receiveMessage()  {
@@ -61,7 +56,6 @@ public class UDPServer implements AutoCloseable{
                 byte[] buf = Services.convertObjectToBytes(answer);
                 packet = new DatagramPacket(buf, buf.length, packet.getAddress(), packet.getPort());
                 socket.send(packet);
-
             }
             else {
                 received.setAddress(packet.getAddress());
@@ -122,8 +116,4 @@ public class UDPServer implements AutoCloseable{
     public void close() throws Exception {
         if (socket !=null && !socket.isClosed()) socket.close();
     }
-
-
-
-
 }

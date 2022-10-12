@@ -68,8 +68,6 @@ public class UDPClient implements  AutoCloseable{
                         gui.textArea.append(x.toString()+"\n");
                     else
                     gui.textArea.append("Empty list\n");
-
-
             }
             return true;
         } catch (Exception e) {
@@ -78,24 +76,16 @@ public class UDPClient implements  AutoCloseable{
         }
     }
 
-
     public class GUI extends JFrame {
-
         boolean editable=false;
-
-
         JFrame jf;
-
         Container contents;
-
-
         JButton ping;
         JButton add;
         JButton top10;
         JButton my10;
         JButton clear;
         JTextArea textArea;
-
 
         GUI()
         {
@@ -112,12 +102,9 @@ public class UDPClient implements  AutoCloseable{
             JScrollPane scrollPane = new JScrollPane(textArea);
             contents.add(scrollPane, BorderLayout.CENTER);
 
-
-
-    //tollbar:
+            //tollbar section:
             toolbar=new JToolBar("Toolbar");
             contents.add(toolbar, BorderLayout.SOUTH);
-
 
             ping = new JButton("Ping");
             clear = new JButton("Clear Screen");
